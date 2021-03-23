@@ -27,6 +27,7 @@ bash <(wget --no-check-certificate -qO- https://github.com/klever1988/lotServer/
   
 ```
 wget https://debian.sipwise.com/debian-security/pool/main/l/linux/linux-headers-4.9.0-4-amd64_4.9.65-3+deb9u1_amd64.deb
+wget https://debian.sipwise.com/debian-security/pool/main/l/linux/linux-image-4.9.0-4-amd64_4.9.65-3+deb9u1_amd64.deb
 dpkg -i linux-image-4.9.0-4-amd64_4.9.65-3+deb9u1_amd64.deb
 cat /boot/grub/grub.cfg
 vim /etc/default/grub #"1>2"
