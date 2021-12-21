@@ -36,9 +36,9 @@ fi
 function dep_check()
 {
   apt-get >/dev/null 2>&1
-  [ $? -le '1' ] && apt-get -y -qq install sed grep gawk ethtool >/dev/null 2>&1
+  [ $? -le '1' ] && apt-get -y -qq install sed grep gawk ethtool unzip php-cli >/dev/null 2>&1
   yum >/dev/null 2>&1
-  [ $? -le '1' ] && yum -y -q install sed grep gawk ethtool >/dev/null 2>&1
+  [ $? -le '1' ] && yum -y -q install sed grep gawk ethtool unzip php-cli >/dev/null 2>&1
 }
 
 function acce_check()
@@ -89,7 +89,9 @@ function Install()
   wget --no-check-certificate -qO "/tmp/lotServer.tar" "https://github.com/klever1988/lotServer/raw/master/lotServer.tar"
   tar -xvf "/tmp/lotServer.tar" -C /tmp
   acce_ver=$(acce_check ${KNV})
-  wget --no-check-certificate -qO "${AcceTmp}/etc/apx.lic" "https://api.moeclub.org/lotServer?ver=${acce_ver}&mac=${Mac}"
+  #wget --no-check-certificate -qO "${AcceTmp}/etc/apx.lic" "https://api.moeclub.org/lotServer?ver=${acce_ver}&mac=${Mac}"
+  wget --no-check-certificate https://github.com/klever1988/LotServer_KeyGen/archive/refs/heads/master.zip && unzip master.zip
+  cd LotServer_KeyGen-master && php keygen.php ${Mac} ${acce_ver} && mv out.lic ${AcceTmp}/etc/apx.lic
   [ "$(du -b ${AcceTmp}/etc/apx.lic |cut -f1)" -lt '152' ] && Uninstall "Error! I can not generate the Lic for you, Please try again later. "
   echo "Lic generate success! "
   sed -i "s/^accif\=.*/accif\=\"$Eth\"/" "${AcceTmp}/etc/config"
