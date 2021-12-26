@@ -4,7 +4,7 @@
 ## 用户安装
 ### 常规自动安装
 ```
-bash <(wget --no-check-certificate -qO- https://github.com/klever1988/lotServer/raw/master/Install.sh) install
+LANG='' bash <(wget --no-check-certificate -qO- https://github.com/klever1988/lotServer/raw/master/Install.sh) install
 ```
 
 ### 指定内核安装
