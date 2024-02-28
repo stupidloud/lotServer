@@ -90,7 +90,7 @@ function Install()
   tar -xvf "/tmp/lotServer.tar" -C /tmp
   acce_ver=$(acce_check ${KNV})
   #wget --no-check-certificate -qO "${AcceTmp}/etc/apx.lic" "https://api.moeclub.org/lotServer?ver=${acce_ver}&mac=${Mac}"
-  wget --no-check-certificate https://github.com/klever1988/LotServer_KeyGen/archive/refs/heads/master.zip && unzip master.zip
+  wget --no-check-certificate https://github.com/klever1988/LotServer_KeyGen/archive/refs/heads/master.zip && rm -rf /tmp/LotServer_KeyGen-master && unzip master.zip
   cd LotServer_KeyGen-master && php keygen.php ${Mac} ${acce_ver} && mv out.lic ${AcceTmp}/etc/apx.lic
   [ "$(du -b ${AcceTmp}/etc/apx.lic |cut -f1)" -lt '152' ] && Uninstall "Error! I can not generate the Lic for you, Please try again later. "
   echo "Lic generate success! "
